@@ -21,10 +21,15 @@ $(function() {
 
                 for (var pret_index in prets) {
                     var pret = prets[pret_index];
-                    dom_prets.append($('<option>', {
+                    var option_data = {
                         value: pret.pret_id,
                         text: pret.pret_quoi + ' (' + pret.pret_qui + ')'
-                    }));
+                    };
+
+                    if (pret.pret_id == $('#form_pret_id').val())
+                        option_data.selected = 'selected';
+
+                    dom_prets.append($('<option>', option_data));
                 }
             }
         });
