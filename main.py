@@ -23,7 +23,7 @@ def route_dbinit():
 @app.route('/prets', methods=['GET'])
 def prets_fetchall():
     db = Db()
-    result = db.select("SELECT * FROM prets")
+    result = db.select("SELECT * FROM prets ORDER BY prets.pret_id DESC")
     db.close()
 
     resp = make_response(json.dumps(result))
