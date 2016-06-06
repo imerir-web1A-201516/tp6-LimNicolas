@@ -13,24 +13,20 @@ $(function() {
                         value: pret.pret_id,
                         text: pret.pret_quoi + ' (' + pret.pret_qui + ')'
                     }));
-                    console.log(pret)
                 }
             }
         });
     }
 
     function pret_add(pret_quoi, pret_qui, pret_etat) {
-        var yolo = {
+        $.ajax({
+            type: 'POST',
+            url: '/prets',
+            data: JSON.stringify({
                 pret_quoi: pret_quoi,
                 pret_qui: pret_qui,
                 pret_etat: pret_etat
-            };
-        console.log(yolo);
-
-        $.ajax({
-            type: 'post',
-            url: '/prets',
-            data: JSON.stringify(yolo),
+            }),
             contentType: 'application/json; charset=utf-8',
             traditional: true,
             success: function(data) {
