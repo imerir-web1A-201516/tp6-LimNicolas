@@ -33,7 +33,10 @@ $(function() {
             data: JSON.stringify(yolo),
             contentType: 'application/json; charset=utf-8',
             traditional: true,
-            success: prets_refresh
+            success: function(data) {
+                $('#form_pret_id').val(parseInt(data.pret_id));
+                prets_refresh();
+            }
         });
     }
 
