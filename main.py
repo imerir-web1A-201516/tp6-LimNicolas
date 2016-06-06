@@ -54,5 +54,25 @@ def prets_create():
 
 # -----------------------------------------------------------------
 
+
+@app.route('/prets/<int:pret_id>', methods=['GET'])
+def pret_fetch(pret_id):
+    db = Db()
+    result = db.select("SELECT * FROM prets WHERE prets.pret_id = %(pret_id)s", {
+        'pret_id': pret_id
+    })
+    db.close()
+
+    if len(result) == 1:
+        resp = make_response(json.dumps(result[0]))
+    else:
+        resp = make_response(json.dumps({'error': 'Given pret_id not found in database.'}), 404)
+
+    resp.mimetype = 'application/json'
+    return resp
+
+
+# -----------------------------------------------------------------
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
