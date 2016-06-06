@@ -36,7 +36,7 @@ def prets_create():
     data = request.get_json()
 
     db = Db()
-    db.execute('INSERT INTO prets(pret_quoi, pret_qui, pret_etat) VALUES (%(pret_quoi)s, %(pret_qui)s, %(pret_etat)s)', {
+    db.execute('INSERT INTO prets(pret_quoi, pret_qui, pret_etat) VALUES(%(pret_quoi)s, %(pret_qui)s, %(pret_etat)s)', {
         'pret_quoi': data['pret_quoi'],
         'pret_qui': data['pret_qui'],
         'pret_etat': data['pret_etat']
