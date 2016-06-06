@@ -1,6 +1,18 @@
 $(function() {
     
     var dom_prets = $('#form_prets_list');
+
+    function alert_display(alert_type, title, text) {
+        var alert_message = $('#alert_message');
+
+        alert_message.removeClass('alert-success alert-danger');
+        alert_message.addClass('alert-' + alert_type);
+
+        alert_message.find('strong').text(title);
+        alert_message.find('span').text(text);
+
+        alert_message.show();
+    }
     
     function prets_refresh() {
         $.ajax('/prets', {
@@ -30,8 +42,12 @@ $(function() {
             contentType: 'application/json; charset=utf-8',
             traditional: true,
             success: function(data) {
+                alert_display('success', 'Ajout du prêt réussi !', '');
                 $('#form_pret_id').val(parseInt(data.pret_id));
                 prets_refresh();
+            },
+            error: function(data) {
+                alert_display('danger', 'Erreur !', data.responseJSON.error);
             }
         });
     }
@@ -54,7 +70,11 @@ $(function() {
             contentType: 'application/json; charset=utf-8',
             traditional: true,
             success: function() {
+                alert_display('success', 'Modification réussie !', '');
                 prets_refresh();
+            },
+            error: function(data) {
+                alert_display('danger', 'Erreur !', data.responseJSON.error);
             }
         });
     }

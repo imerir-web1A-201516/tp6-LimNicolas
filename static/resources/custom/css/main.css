@@ -10,3 +10,7 @@ div.form-group.form-center {
 .btn.btn-large-width {
     width: 100%;
 }
+
+div.col-lg-12 div.alert {
+    margin-top: 15px;
+}

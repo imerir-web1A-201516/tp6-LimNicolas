@@ -37,12 +37,19 @@ def prets_fetchall():
 def prets_create():
     data = request.get_json()
 
+    try:
+        insert_data = {
+            'pret_quoi': data['pret_quoi'],
+            'pret_qui': data['pret_qui'],
+            'pret_etat': data['pret_etat']
+        }
+    except KeyError:
+        resp = make_response(json.dumps({'error': 'Form data is incomplete.'}), 400)
+        resp.mimetype = 'application/json'
+        return resp
+
     db = Db()
-    pret_id = db.insert('INSERT INTO prets(pret_quoi, pret_qui, pret_etat) VALUES(%(pret_quoi)s, %(pret_qui)s, %(pret_etat)s)', 'pret_id', {
-        'pret_quoi': data['pret_quoi'],
-        'pret_qui': data['pret_qui'],
-        'pret_etat': data['pret_etat']
-    })
+    pret_id = db.insert('INSERT INTO prets(pret_quoi, pret_qui, pret_etat) VALUES(%(pret_quoi)s, %(pret_qui)s, %(pret_etat)s)', 'pret_id', insert_data)
     db.close()
 
     resp = make_response(json.dumps({
