@@ -40,12 +40,30 @@ $(function() {
         });
     }
 
+    function populate_pret(pret_id) {
+        $.ajax('/prets/' + pret_id, {
+            success: function (pret) {
+                $('#form_pret_id').val(parseInt(pret.pret_id));
+                $('#form_pret_quoi').val(pret.pret_quoi);
+                $('#form_pret_qui').val(pret.pret_qui);
+
+                var radio_name = 'form_pret_etat_' + pret.pret_etat;
+                $('#' + radio_name).prop('checked', true);
+            }
+        });
+    }
+
     $('#form_pret_create').click(function() {
         pret_add(
             $('#form_pret_quoi').val(),
             $('#form_pret_qui').val(),
             $('input[name=form_pret_etat]:checked').val()
         );
+    });
+
+    dom_prets.change(function() {
+        var pret_id = $(this).val();
+        populate_pret(pret_id);
     });
 
     prets_refresh();
