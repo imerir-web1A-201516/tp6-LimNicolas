@@ -7,7 +7,7 @@ CREATE TABLE prets (
   pret_etat INT NOT NULL
 );
 
-INSERT INTO prets (pret_quoi, pret_qui, pret_etat) VALUES ('Cable DVI', 'Jean-Patate', 0);
-INSERT INTO prets (pret_quoi, pret_qui, pret_etat) VALUES ('Cable HDMI', 'Jean-Moustache', 1);
-INSERT INTO prets (pret_quoi, pret_qui, pret_etat) VALUES ('Cable DisplayPort', 'Jean-Rémi', 0);
-INSERT INTO prets (pret_quoi, pret_qui, pret_etat) VALUES ('Cable VGA', 'Jean-Tomate', 2);
+INSERT INTO prets(pret_quoi, pret_qui, pret_etat) VALUES('Cable DVI', 'Jean-Patate', 0);
+INSERT INTO prets(pret_quoi, pret_qui, pret_etat) VALUES('Cable HDMI', 'Jean-Moustache', 1);
+INSERT INTO prets(pret_quoi, pret_qui, pret_etat) VALUES('Cable DisplayPort', 'Jean-Rémi', 0);
+INSERT INTO prets(pret_quoi, pret_qui, pret_etat) VALUES('Cable VGA', 'Jean-Tomate', 2);
