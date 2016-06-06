@@ -74,5 +74,52 @@ def pret_fetch(pret_id):
 
 # -----------------------------------------------------------------
 
+
+@app.route('/prets/<int:pret_id>', methods=['PUT'])
+def pret_update(pret_id):
+    data = request.get_json()
+
+    db = Db()
+    pret = db.select("SELECT * FROM prets WHERE prets.pret_id = %(pret_id)s", {
+        'pret_id': pret_id
+    })
+
+    if len(pret) != 1:
+        db.close()
+        resp = make_response(json.dumps({'error': 'Given pret_id not found in database.'}), 404)
+        resp.mimetype = 'application/json'
+        return resp
+
+    pret = pret[0]
+
+    try:
+        pret['pret_quoi'] = data['pret_quoi']
+    except KeyError:
+        pass
+
+    try:
+        pret['pret_qui'] = data['pret_qui']
+    except KeyError:
+        pass
+
+    try:
+        pret['pret_etat'] = data['pret_etat']
+    except KeyError:
+        pass
+
+    db.execute('UPDATE prets SET pret_quoi = %(pret_quoi)s, pret_qui = %(pret_qui)s, pret_etat = %(pret_etat)s WHERE prets.pret_id = %(pret_id)s', {
+       'pret_quoi': pret['pret_quoi'],
+       'pret_qui': pret['pret_qui'],
+       'pret_etat': pret['pret_etat'],
+       'pret_id': pret['pret_id'],
+    })
+    db.close()
+
+    return make_response('', 204)
+
+
+
+# -----------------------------------------------------------------
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
