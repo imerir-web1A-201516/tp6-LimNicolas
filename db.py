@@ -63,7 +63,7 @@ class Db:
 
     def insert(self, sql, primaryKey, sqlParams=None):
         self.execute(sql + ' RETURNING ' + primaryKey, sqlParams)
-        return self.fetchone()
+        return self.fetchone()[primaryKey]
 
     def select(self, sql, sqlParams=None, subkeys=None):
         self.execute(sql, sqlParams)
