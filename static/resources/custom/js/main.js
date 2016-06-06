@@ -19,6 +19,32 @@ $(function() {
         });
     }
 
+    function pret_add(pret_quoi, pret_qui, pret_etat) {
+        var yolo = {
+                pret_quoi: pret_quoi,
+                pret_qui: pret_qui,
+                pret_etat: pret_etat
+            };
+        console.log(yolo);
+
+        $.ajax({
+            type: 'post',
+            url: '/prets',
+            data: JSON.stringify(yolo),
+            contentType: 'application/json; charset=utf-8',
+            traditional: true,
+            success: prets_refresh
+        });
+    }
+
+    $('#form_pret_create').click(function() {
+        pret_add(
+            $('#form_pret_quoi').val(),
+            $('#form_pret_qui').val(),
+            $('input[name=form_pret_etat]:checked').val()
+        );
+    });
+
     prets_refresh();
 
 });
