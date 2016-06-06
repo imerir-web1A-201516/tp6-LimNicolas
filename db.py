@@ -61,9 +61,14 @@ class Db:
             self.cur.execute(sql, sqlParams)
         self.conn.commit()
 
+    def insert(self, sql, primaryKey, sqlParams=None):
+        self.execute(sql + ' RETURNING ' + primaryKey, sqlParams)
+        return self.fetchone()
+
     def select(self, sql, sqlParams=None, subkeys=None):
         self.execute(sql, sqlParams)
         return self.fetchall(subkeys)
+
 
     def close(self):
         self.cur.close()
