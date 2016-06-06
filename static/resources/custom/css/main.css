@@ -1,0 +1,12 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+div.form-group.form-center {
+    text-align: center;
+}
+
+.btn.btn-large-width {
+    width: 100%;
+}

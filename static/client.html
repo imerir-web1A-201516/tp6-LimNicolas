@@ -2,15 +2,87 @@
 <html>
     <head>
         <meta charset="utf-8">
+
         <title>Gestionnaire de prêt</title>
+
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script>
-        $(function(){
-            $('#title').text("À vous de jouer")
-        })
-        </script>
+
+        <!-- Bootstrap v3.3.5 -->
+        <link rel="stylesheet" href="/static/resources/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+        <script src="/static/resources/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+
+        <script src="/static/resources/custom/js/main.js"></script>
+        <link rel="stylesheet" href="/static/resources/custom/css/main.css">
     </head>
     <body>
-        <h1 id="title">Sera remplacé par jQuery</h1>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>Emprunts en cours</h3>
+
+                    <div class="form-group">
+                        <form>
+                            <select name="sometext" size="15" class="form-control">
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                                <option>Option 4</option>
+                                <option>Option 5</option>
+                            </select>
+                        </form>
+                    </div>
+
+                    <div class="form-group">
+                        <button id="form_prets_actualiser" class="btn btn-info btn-large-width">Actualiser</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h3>Détail</h3>
+
+                    <form>
+                        <input type="hidden" name="form_pret_id" value=""/>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">Quoi</div>
+                                <input type="text" class="form-control" id="form_pret_quoi" name="form_pret_quoi" placeholder="Cable DVI">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">Qui</div>
+                                <input type="text" class="form-control" id="form_pret_qui" name="form_pret_qui" placeholder="Colonel Moustache">
+                            </div>
+                        </div>
+
+                        <div class="form-group form-center">
+                            <label class="radio-inline">
+                                <input type="radio" name="form_pret_etat" id="form_pret_etat_prete" value="prete"> Prêté
+                            </label>
+
+                            <label class="radio-inline">
+                                <input type="radio" name="form_pret_etat" id="form_pret_etat_rendu" value="rendu"> Rendu
+                            </label>
+
+                            <label class="radio-inline">
+                                <input type="radio" name="form_pret_etat" id="form_pret_etat_annule" value="annule"> Annulé
+                            </label>
+                        </div>
+                    </form>
+
+                    <div class="form-group">
+                        <button id="form_prets_actualiser" class="btn btn-info btn-large-width">Créer comme un nouveau prêt</button>
+                    </div>
+
+                    <div class="form-group">
+                        <button id="form_prets_actualiser" class="btn btn-info btn-large-width">Modifier la sélection</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>
