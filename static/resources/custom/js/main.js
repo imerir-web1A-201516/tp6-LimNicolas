@@ -36,6 +36,29 @@ $(function() {
         });
     }
 
+    function pret_modify(pret_quoi, pret_qui, pret_etat) {
+        var pret_id = $('#form_pret_id').val();
+        if (pret_id == '') {
+            alert('Veuillez sélectionner un prêt pour pouvoir le modifier.');
+            return;
+        }
+
+        $.ajax({
+            type: 'PUT',
+            url: '/prets/' + pret_id,
+            data: JSON.stringify({
+                pret_quoi: pret_quoi,
+                pret_qui: pret_qui,
+                pret_etat: pret_etat
+            }),
+            contentType: 'application/json; charset=utf-8',
+            traditional: true,
+            success: function() {
+                prets_refresh();
+            }
+        });
+    }
+
     function populate_pret(pret_id) {
         $.ajax('/prets/' + pret_id, {
             success: function (pret) {
@@ -60,6 +83,14 @@ $(function() {
     dom_prets.change(function() {
         var pret_id = $(this).val();
         populate_pret(pret_id);
+    });
+
+    $('#form_pret_update').click(function() {
+        pret_modify(
+            $('#form_pret_quoi').val(),
+            $('#form_pret_qui').val(),
+            $('input[name=form_pret_etat]:checked').val()
+        );
     });
 
     prets_refresh();
